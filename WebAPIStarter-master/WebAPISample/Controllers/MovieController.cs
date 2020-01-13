@@ -5,41 +5,118 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using WebAPISample.Models;
+using System.Net.Http.Formatting;
+using System.Net.Http.Headers;
+using System.Runtime.Serialization;
+using System.Security;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+
 
 namespace WebAPISample.Controllers
 {
     public class MovieController : ApiController
     {
+        public ApplicationDbContext context = new ApplicationDbContext();
         // GET api/values
-        public IEnumerable<string> Get()
+        MovieController()
         {
-            // Retrieve all movies from db logic
-            return new string[] { "movie1 string", "movie2 string" };
+            context = new ApplicationDbContext();
+        }
+        /* public IEnumerable<Movie> Get()
+         {
+             return context.Movies.ToList();
+
+             // Retrieve all movies from db logic
+             //return new string[] { "movie1 string", "movie2 string" };
+         }
+         */
+        public async Task<IHttpActionResult> Get()
+        {
+            try
+            {
+                var movies = await Task.Run(() => context.Movies);
+
+                return Ok(movies);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public async Task<IHttpActionResult> Get(int id)
         {
-            // Retrieve movie by id from db logic
-            return "value";
+            try
+            {
+                var movie = await Task.Run(() => context.Movies.Where(m => m.MovieId == id).Single());
+
+                return Ok(movie);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+        // GET api/values/5
+       
+         
+        public async Task<IHttpActionResult> Post([FromBody]Movie value)
+        {
+            try
+            {
+                context.Movies.Add(value);
+                var movie = await context.SaveChangesAsync();
+
+                return Ok(value);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
         }
 
-        // POST api/values
-        public void Post([FromBody]Movie value)
-        {
-            // Create movie in db logic
-        }
+
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public async Task<IHttpActionResult> Put([FromBody]Movie value)
         {
-            // Update movie in db logic
+            try
+            {
+                var movieToUpdate = context.Movies.Find(value.MovieId);
+
+                movieToUpdate.Title = value.Title ?? movieToUpdate.Title;
+                movieToUpdate.Genre = value.Genre ?? movieToUpdate.Genre;
+                movieToUpdate.Director = value.Director ?? movieToUpdate.Director;
+                var movie = await context.SaveChangesAsync();
+
+                return Ok(movie);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public async Task<IHttpActionResult> Delete(int id)
         {
             // Delete movie from db logic
+            try
+            {
+                context.Movies.Remove(context.Movies.FirstOrDefault(h => h.MovieId == id));
+                var movie = await context.SaveChangesAsync();
+                return Ok(movie);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
     }
 
