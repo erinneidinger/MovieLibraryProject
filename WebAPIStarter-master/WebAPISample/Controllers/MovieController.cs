@@ -27,13 +27,18 @@ namespace WebAPISample.Controllers
             movies = context.Movies.ToList();
    
         }
+
         public IEnumerable<Movie> Get()
         {
-            return movies;
+
+            return context.Movies.ToList();
 
             // Retrieve all movies from db logic
            // return new string[] { "movie1 string", "movie2 string" };
         }
+
+
+
 
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)
