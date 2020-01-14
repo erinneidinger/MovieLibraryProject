@@ -24,14 +24,7 @@ namespace WebAPISample.Controllers
         {
             context = new ApplicationDbContext();
         }
-        /* public IEnumerable<Movie> Get()
-         {
-             return context.Movies.ToList();
-
-             // Retrieve all movies from db logic
-             //return new string[] { "movie1 string", "movie2 string" };
-         }
-         */
+        
         public async Task<IHttpActionResult> Get()
         {
             try
