@@ -23,44 +23,23 @@ namespace WebAPISample.Controllers
         // GET api/values
         MovieController()
         {
-            context = new ApplicationDbContext();
+          
+            movies = context.Movies.ToList();
+   
         }
-        public IEnumerable<Movie> Get()
+        public IEnumerable<Movie> GetAll()
         {
-            return context.Movies.ToList();
+            return movies;
 
             // Retrieve all movies from db logic
            // return new string[] { "movie1 string", "movie2 string" };
         }
 
-        //public async Task<IHttpActionResult> Get()
-        //{
-        //    try
-        //    {
-        //        var movies = await Task.Run(() => context.Movies);
-
-        //        return Ok(movies);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-
-        //}
-
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)
         {
-            try
-            {
-                var movie = await Task.Run(() => context.Movies.Where(m => m.MovieId == id).Single());
-
-                return Ok(movie);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+            var foundMovie = context.Movies.Where(a => a.MovieId == id).Single();
+            return Ok(foundMovie);
         }
         // GET api/values/5
        
@@ -70,9 +49,9 @@ namespace WebAPISample.Controllers
             try
             {
                 context.Movies.Add(value);
-                var movie = await context.SaveChangesAsync();
+                context.SaveChangesAsync();
 
-                return Ok(value);
+                return Ok(movies);
             }
             catch (Exception ex)
             {
@@ -80,8 +59,6 @@ namespace WebAPISample.Controllers
             }
 
         }
-
-
 
         // PUT api/values/5
         public async Task<IHttpActionResult> Put([FromBody]Movie value)
