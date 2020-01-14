@@ -19,34 +19,34 @@ namespace WebAPISample.Controllers
     public class MovieController : ApiController
     {
         public ApplicationDbContext context = new ApplicationDbContext();
+        List<Movie> movies = new List<Movie>();
         // GET api/values
         MovieController()
         {
             context = new ApplicationDbContext();
         }
-        /* public IEnumerable<Movie> Get()
-         {
-             return context.Movies.ToList();
-
-             // Retrieve all movies from db logic
-             //return new string[] { "movie1 string", "movie2 string" };
-         }
-         */
-        public async Task<IHttpActionResult> Get()
+        public IEnumerable<Movie> Get()
         {
-            try
-            {
-                var movies = await Task.Run(() => context.Movies);
+            return context.Movies.ToList();
 
-                return Ok(movies);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-
-
+            // Retrieve all movies from db logic
+           // return new string[] { "movie1 string", "movie2 string" };
         }
+
+        //public async Task<IHttpActionResult> Get()
+        //{
+        //    try
+        //    {
+        //        var movies = await Task.Run(() => context.Movies);
+
+        //        return Ok(movies);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return InternalServerError(ex);
+        //    }
+
+        //}
 
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)

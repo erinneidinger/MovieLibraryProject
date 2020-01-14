@@ -6,39 +6,51 @@ $(function (){
         {
             "Title": "The Departed",
             "Genre": "Drama",
-            "DirectorName": "Martin Scorsese",
+            "Director": "Martin Scorsese",
         }
         {
             "Title": "The Dark Knight",
-            "genre": "Drama",
-            "directorName": "Christopher Nolan",
+            "Genre": "Drama",
+            "Director": "Christopher Nolan",
         }
         {
-            "title": "Inception",
-            "genre": "Drama",
-            "directorName": "Christopher Nolan",
+            "Title": "Inception",
+            "Genre": "Drama",
+            "Director": "Christopher Nolan",
         }
         {
-            "title": "Pineapple Express",
-            "genre": "Comedy",
-            "directorName": "David Gordan Green",
+            "Title": "Pineapple Express",
+            "Genre": "Comedy",
+            "Director": "David Gordan Green",
         }
         {
-            "title": "Die Hard",
-            "genre": "Action",
-            "directorName": "John McTiernan",
+            "Title": "Die Hard",
+            "Genre": "Action",
+            "Director": "John McTiernan",
         }
     ]
+    
+    $function updateClick(){
 
-    $.ajax({
-        type: 'GET',
-        url: 'index.html',
-        success: function(movies){
-            $.each(movies, function(i, movie){
-                $movies.append('<li>name: '+ movie.Title +', genre: '+ movie.Genre +', director: '+ movie.directorName + '</li>');
-            })
-        }
-    })
+    }
+    $function addClick(){
+
+    }
+
+    function movieList(){
+        $.ajax({
+            type: 'GET',
+            url: '/api/Movies',
+            success: function(movies){
+                $.each(movies, function(i, movie){
+                    $movies.append('<li>Title: '+ movie.Title +', Genre: '+ movie.Genre +', Director: '+ movie.Director + '</li>');
+                });
+            }
+        })
+    }
+   $(document).ready(function(){
+       movieList()
+   })
     
 })
 </head>
