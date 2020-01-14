@@ -23,8 +23,11 @@ namespace WebAPISample.Controllers
         // GET api/values
         MovieController()
         {
-            context = new ApplicationDbContext();
+          
+            movies = context.Movies.ToList();
+   
         }
+
 
         
         public async Task<IHttpActionResult> Get()
@@ -32,25 +35,22 @@ namespace WebAPISample.Controllers
                  
             return context.Movies.ToList();
 
+       
+            return movies;
+
+
             // Retrieve all movies from db logic
            // return new string[] { "movie1 string", "movie2 string" };
         }
 
-        
+
+
 
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)
         {
-            try
-            {
-                var movie = await Task.Run(() => context.Movies.Where(m => m.MovieId == id).Single());
-
-                return Ok(movie);
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+            var foundMovie = context.Movies.Where(a => a.MovieId == id).Single();
+            return Ok(foundMovie);
         }
         // GET api/values/5
        
@@ -60,9 +60,9 @@ namespace WebAPISample.Controllers
             try
             {
                 context.Movies.Add(value);
-                var movie = await context.SaveChangesAsync();
+                context.SaveChangesAsync();
 
-                return Ok(value);
+                return Ok(movies);
             }
             catch (Exception ex)
             {
@@ -70,8 +70,6 @@ namespace WebAPISample.Controllers
             }
 
         }
-
-
 
         // PUT api/values/5
         public async Task<IHttpActionResult> Put([FromBody]Movie value)

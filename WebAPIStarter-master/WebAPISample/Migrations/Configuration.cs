@@ -26,11 +26,7 @@ namespace WebAPISample.Migrations
         new Models.Movie { Title = "Inception", Genre = "Drama", Director = "Christopher Nolan" },
         new Models.Movie { Title = "Pineapple Express", Genre = "Comedy", Director = "David Gordon Green" },
         new Models.Movie { Title = "Die Hard", Genre = "Action", Director = "John McTiernan" }
-<<<<<<< HEAD
 
-       
-=======
->>>>>>> e9a0a4ead5f5a0bee23bacd9eee898a5be921a30
         );
         }
     }

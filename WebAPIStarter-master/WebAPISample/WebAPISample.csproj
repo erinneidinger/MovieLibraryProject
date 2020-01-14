@@ -223,15 +223,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-    <Compile Include="Migrations\202001132136584_newmigration.cs" />
-    <Compile Include="Migrations\202001132136584_newmigration.Designer.cs">
-      <DependentUpon>202001132136584_newmigration.cs</DependentUpon>
-=======
     <Compile Include="Migrations\202001132136144_ThirdMigration.cs" />
     <Compile Include="Migrations\202001132136144_ThirdMigration.Designer.cs">
       <DependentUpon>202001132136144_ThirdMigration.cs</DependentUpon>
->>>>>>> e9a0a4ead5f5a0bee23bacd9eee898a5be921a30
+    </Compile>
+    <Compile Include="Migrations\202001141734031_TuesdayMigration.cs" />
+    <Compile Include="Migrations\202001141734031_TuesdayMigration.Designer.cs">
+      <DependentUpon>202001141734031_TuesdayMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -359,6 +357,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001132136144_ThirdMigration.resx">
       <DependentUpon>202001132136144_ThirdMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001141734031_TuesdayMigration.resx">
+      <DependentUpon>202001141734031_TuesdayMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
