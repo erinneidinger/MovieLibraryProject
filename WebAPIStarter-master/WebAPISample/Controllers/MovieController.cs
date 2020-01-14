@@ -27,7 +27,7 @@ namespace WebAPISample.Controllers
             movies = context.Movies.ToList();
    
         }
-        public IEnumerable<Movie> GetAll()
+        public IEnumerable<Movie> Get()
         {
             return movies;
 
