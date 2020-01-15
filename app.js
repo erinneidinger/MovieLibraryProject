@@ -24,7 +24,7 @@ function FindMovies(){
 
 function movieAddRow(dict){
     
-    $("#my-form").append(
+    $("#addingmovies").append(
         "<tr>" + "<td>" + dict.Title + "</td>" + "<td>" + dict.Genre + "</td>" + "<td>" + dict.Director + "</td>" + "</tr>");
 }
 
@@ -48,20 +48,26 @@ function addMovie(dict)
 }
 
 
-function editMovie(dict){
-    $.ajax({
-        url: 'https://localhost:44352/api/Movie',
-        dataType: 'json',
-        type: 'PUT',
-        contentType: 'application/json',
-        success: function(dict){
-            //fill in logic here
-        },
-        error: function (request, message, error){
-            handleException(request, message, error);
-        }
-    });
-}
+// function editMovie(dict){
+//     var data = {
+//         "MovieId": document.getElementById("MovieId").value,
+//         "Title": document.getElementById("title").value,
+//         "Genre": document.getElementById("genre").value,
+//         "Director": document.getElementById("director").value,}
+        
+//     $.ajax({
+//         url: 'https://localhost:44352/api/Movie',
+//         dataType: 'json',
+//         type: 'PUT',
+//         contentType: 'application/json',
+//         success: function(dict){
+            
+//         },
+//         error: function (request, message, error){
+//             handleException(request, message, error);
+//         }
+//     });
+// }
 
     //delete movie from table
     // function deleteButton(dict){
