@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MOVIE LIBRARY</title>
+    <title>jQuery AJAX POST Form</title>
     <meta charset="utf-8">
 </head>
 <body>
 
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Director</th>
-        </tr>
-    </thead>
-    <tbody class = "movieData">
-    </tbody>
-</table>
-
-<button type="submit" onclick="FindMovies()">See Movies</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Director</th>
+            </tr>
+        </thead>
+        <tbody class = "movieData">
+    
+        </tbody>
+    </table>
+    
+    <button type="button" onclick="FindMovies()">See Movies</button>
 
 <form id="my-form">
     <input type="text" name="title" placeholder="Title" />
     <input type="text" name="genre" placeholder="Genre" />
     <input type="text" name="director" placeholder="Director" />
 
-    <button type="submit" onclick="addMovie()">Add Movie</button>
+    <button type="submit">Submit</button>
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="Desktop/Devcodecamp/week_09/app.js"></script>
+<script type="text/javascript" src="./app.js"></script>
 </body>
 </html>

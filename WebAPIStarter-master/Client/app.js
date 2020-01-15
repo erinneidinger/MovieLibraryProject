@@ -16,19 +16,25 @@
                 contentType: 'application/json',
                 data: JSON.stringify(dict),
                 success: function(data){
+                    console.log(data);
                     $(".movieData").html("");
                 },
-                error: function (request, message, error){
-                    handleException(request, message, error);
-                }
             });
             e.preventDefault();
 
-            $.then(".movieData"){
+            $.then{
+                $(".movieData").append(
                 $.each(data, function(i, data){
-                    $.append('<td>Title: '+ data.Title +', Genre: '+ data.Genre +', Director: '+ data.Director + '</td>');
+                    "<tr>" +
+                    "<td>"Title"</td>" +
+                    "<td>"Genre"</td>" +
+                    "<td>"Director"</td>"
+                    "</tr>"
+                    );
                 });
+            }
                 movieAddRow(data);
+                
             }
         });
     }
@@ -104,7 +110,7 @@
 
         e.preventDefault(); 
         }
-    }
+    
 
     function formClear(dict){
         $.ajax({
@@ -115,4 +121,8 @@
     }
 
     $('#my-form').submit( processForm );
-})(jQuery);
+}
+
+})
+
+(jQuery);
