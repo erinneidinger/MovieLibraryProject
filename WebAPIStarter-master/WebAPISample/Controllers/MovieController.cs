@@ -28,10 +28,6 @@ namespace WebAPISample.Controllers
    
         }
 
-        public IEnumerable<Movie> Get()
-        {
-
-<<<<<<< HEAD
 
         // GET api/values
         public async Task<IHttpActionResult> Get()
@@ -46,16 +42,7 @@ namespace WebAPISample.Controllers
             {
                 return InternalServerError(ex);
             }
-
-
-=======
-            return context.Movies.ToList();
-
-            // Retrieve all movies from db logic
-           // return new string[] { "movie1 string", "movie2 string" };
->>>>>>> 263702c0e79dfa9495a53a6c80655ec2f8c29376
         }
-
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)
         {
