@@ -31,30 +31,54 @@ namespace WebAPISample.Controllers
         public IEnumerable<Movie> Get()
         {
 
+<<<<<<< HEAD
+
+        // GET api/values
+        public async Task<IHttpActionResult> Get()
+        {
+            try
+            {
+                var movies = await Task.Run(() => context.Movies);
+
+                return Ok(movies);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+
+=======
             return context.Movies.ToList();
 
             // Retrieve all movies from db logic
            // return new string[] { "movie1 string", "movie2 string" };
+>>>>>>> 263702c0e79dfa9495a53a6c80655ec2f8c29376
         }
-
-
-
 
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)
         {
-            var foundMovie = context.Movies.Where(a => a.MovieId == id).Single();
-            return Ok(foundMovie);
+            try
+            {
+                var movie = await Task.Run(() => context.Movies.Where(m => m.MovieId == id).Single());
+
+                return Ok(movie);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
         // GET api/values/5
-       
-         
+
+
         public async Task<IHttpActionResult> Post([FromBody]Movie value)
         {
             try
             {
                 context.Movies.Add(value);
-                context.SaveChangesAsync();
+                var movie = await context.SaveChangesAsync();
 
                 return Ok(movies);
             }
@@ -75,6 +99,7 @@ namespace WebAPISample.Controllers
                 movieToUpdate.Title = value.Title ?? movieToUpdate.Title;
                 movieToUpdate.Genre = value.Genre ?? movieToUpdate.Genre;
                 movieToUpdate.Director = value.Director ?? movieToUpdate.Director;
+               // movieToUpdate.ImageUrl = value.ImageUrl ?? movieToUpdate.ImageUrl;
                 var movie = await context.SaveChangesAsync();
 
                 return Ok(movie);
