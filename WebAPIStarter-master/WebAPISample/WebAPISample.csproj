@@ -223,13 +223,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001132136144_ThirdMigration.cs" />
-    <Compile Include="Migrations\202001132136144_ThirdMigration.Designer.cs">
-      <DependentUpon>202001132136144_ThirdMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001141734031_TuesdayMigration.cs" />
-    <Compile Include="Migrations\202001141734031_TuesdayMigration.Designer.cs">
-      <DependentUpon>202001141734031_TuesdayMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202001152013535_initial.cs" />
+    <Compile Include="Migrations\202001152013535_initial.Designer.cs">
+      <DependentUpon>202001152013535_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -270,6 +266,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="image\Darkknight.jpg" />
+    <Content Include="image\DieHard.jpg" />
+    <Content Include="image\Hunter.jpg" />
+    <Content Include="image\Inception.jpg" />
+    <Content Include="image\PineappleExpress.jpg" />
+    <Content Include="image\PineappleExpress1.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -347,19 +349,11 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001132136584_newmigration.resx">
-      <DependentUpon>202001132136584_newmigration.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001132136144_ThirdMigration.resx">
-      <DependentUpon>202001132136144_ThirdMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001141734031_TuesdayMigration.resx">
-      <DependentUpon>202001141734031_TuesdayMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001152013535_initial.resx">
+      <DependentUpon>202001152013535_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

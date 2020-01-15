@@ -23,15 +23,12 @@ namespace WebAPISample.Controllers
         // GET api/values
         MovieController()
         {
-          
+
             movies = context.Movies.ToList();
-   
+
         }
 
-        public IEnumerable<Movie> Get()
-        {
 
-<<<<<<< HEAD
 
         // GET api/values
         public async Task<IHttpActionResult> Get()
@@ -48,12 +45,6 @@ namespace WebAPISample.Controllers
             }
 
 
-=======
-            return context.Movies.ToList();
-
-            // Retrieve all movies from db logic
-           // return new string[] { "movie1 string", "movie2 string" };
->>>>>>> 263702c0e79dfa9495a53a6c80655ec2f8c29376
         }
 
         // GET api/values/5
@@ -99,7 +90,7 @@ namespace WebAPISample.Controllers
                 movieToUpdate.Title = value.Title ?? movieToUpdate.Title;
                 movieToUpdate.Genre = value.Genre ?? movieToUpdate.Genre;
                 movieToUpdate.Director = value.Director ?? movieToUpdate.Director;
-               // movieToUpdate.ImageUrl = value.ImageUrl ?? movieToUpdate.ImageUrl;
+                movieToUpdate.Imagename = value.Imagename ?? movieToUpdate.Imagename;
                 var movie = await context.SaveChangesAsync();
 
                 return Ok(movie);
