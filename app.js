@@ -1,11 +1,3 @@
-
-var dict = {
-    Title : this["title"],
-    Genre : this["genre"],
-    Director: this["director"],
-}
-        
-
 function FindMovies(){
     $(document).ready(function(){
         $.ajax({
@@ -32,69 +24,59 @@ function FindMovies(){
 
 function movieAddRow(dict){
     
-    if($("#movieTable tbody").length == 0){
-        $("#movieTable tbody").append()("<tbody></tbody>");
-    }
-    $("#movieTable tbody").append(
-        movieBuildTableRow(dict));
-}
-
-function movieBuildTableRow(dict){
-    var ret = 
-    "<tr>" + "<td>" + dict.Title + "</td>" + "<td>" + dict.Genre + "</td>" + "<td>" + dict.Director + "</td>" + "</tr>";
-    return ret;
+    $("#my-form").append(
+        "<tr>" + "<td>" + dict.Title + "</td>" + "<td>" + dict.Genre + "</td>" + "<td>" + dict.Director + "</td>" + "</tr>");
 }
 
 function addMovie(dict) 
 {
+    var data = {
+        "Title": document.getElementById("title").value,
+        "Genre": document.getElementById("genre").value,
+        "Director": document.getElementById("director").value,
+    }
+    $(document).ready(function(){
     $.ajax({
         url: 'https://localhost:44352/api/Movie',
-        dataType: 'json',
         type: 'POST',
-        contentType: 'application/json',
-        success: function( data, textStatus, jQxhr ){
-            $("#my-form");
-            movieAddRow(dict);
-        },
-        error: function( jqXhr, textStatus, errorThrown ){
-            console.log( errorThrown );
-        }
+        dataType: 'json',
+        data: data,
+    }).then(function(){
+        FindMovies();
     });
+});
 }
 
-function editEdit(dict){
+
+function editMovie(dict){
     $.ajax({
         url: 'https://localhost:44352/api/Movie',
         dataType: 'json',
         type: 'PUT',
         contentType: 'application/json',
-        success: function(data){
+        success: function(dict){
             //fill in logic here
         },
         error: function (request, message, error){
             handleException(request, message, error);
         }
     });
-
-
-    }
+}
 
     //delete movie from table
-    function deleteButton(dict){
-        $.ajax({
-            url: 'https://localhost:44352/api/Movie',
-            dataType: 'json',
-            type: 'DELETE',
-            contentType: 'application/json',
-            success: function(data){
-                //fill in logic here
-            },
-            error: function (request, message, error){
-                handleException(request, message, error);
-            }
-        });
-
-
-        }
+    // function deleteButton(dict){
+    //     $.ajax({
+    //         url: 'https://localhost:44352/api/Movie',
+    //         dataType: 'json',
+    //         type: 'DELETE',
+    //         contentType: 'application/json',
+    //         success: function(dict){
+    //             //fill in logic here
+    //         },
+    //         error: function (request, message, error){
+    //             handleException(request, message, error);
+    //         }
+    //     });
+    // }
 
 (jQuery);

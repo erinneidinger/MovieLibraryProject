@@ -60,12 +60,12 @@ namespace WebAPISample.Controllers
         // GET api/values/5
 
 
-        public async Task<IHttpActionResult> Post([FromBody]Movie value)
+        public IHttpActionResult Post([FromBody]Movie value)
         {
             try
             {
                 context.Movies.Add(value);
-                var movie = await context.SaveChangesAsync();
+                context.SaveChanges();
 
                 return Ok(movies);
             }
