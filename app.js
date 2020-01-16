@@ -1,3 +1,7 @@
+var moviesAll = $('#movies');
+var movieTemplate = "" + "<li>" + "<p>title: {{title}}</p>" + 
+"<p>genre: {{genre}}</p>" + "<p>director: {{director}}</p>" + "<li>";
+
 function FindMovies(){
     $(document).ready(function(){
         $.ajax({
@@ -45,29 +49,7 @@ function addMovie(dict)
     });
 });
 }
-function editMovie(dict){
-   
-        
-    $.ajax({
-        url: 'https://localhost:44352/api/Movie',
-        dataType: 'json',
-        type: 'PUT',
-        contentType: 'application/json',
-        success: function(dict){
-            
-        },
-        error: function (request, message, error){
-            handleException(request, message, error);
-        }
-    });
-}
-$updatingmovies.delegate('.remove', 'click', function(){
-    var $li = $(this).closest('li');
-    var self = this;
-    $.ajax({
-        type
-    })
-})
+
     //delete movie from table
     // function deleteButton(dict){
     //     $.ajax({
@@ -117,6 +99,68 @@ $updatingmovies.delegate('.remove', 'click', function(){
 
         }
 
+
+function deleteMovie(id){
+    $.moviesAll.delegate('.remove', 'click', function(){
+        var $li = $(this).closest('li');
+    
+        $.ajax({
+            type: 'DELETE',
+            url: 'https://localhost:44352/api/Movie/' + $(this).attr('data-id'),
+            success: function (){
+                $li.fadOut(300, function(){
+                    $(this).remove();
+                });
+            }
+        });
+    });
+}
+
+function editMovie(id){
+    var data = {
+        "Title": document.getElementById("title").value,
+        "Genre": document.getElementById("genre").value,
+        "Director": document.getElementById("director").value,
+    }
+
+moviesAll.delegate('.editDetails', 'click', function(){
+    var $li = $(this).closet('li');
+    $li.find('input.title').val($li.find('span.title').html());
+    $li.find('input.genre').val($li.find('span.genre').html());
+    $li.find('input.director').val($li.find('span.director').html());
+    $li.addClass('edit');
+})
+
+moviesAll.delegate('.cancelEdit', 'click', function(){
+   $(this).closert('li').removeClass('edit');
+})
+
+moviesAll.delegate('.saveEdit', 'click', function(){
+    var $li = $(this).closest('li');
+    var movie = {
+        Title: $li.find('input.title').val(),
+        Genre: $li.find('input.genre').val(),
+        Director: $li.find('input.director').val(),
+    };
+$.ajax({
+    url: 'https://localhost:44352/api/Movie/' + $li.attr('data-id'),
+    dataType: 'json',
+    type: 'PUT',
+    data: movie,
+    success: function(){
+        $li.find('span.title').html(movie.Title);
+        $li.find('span.genre').html(movie.Genre);
+        $li.find('span.director').html(movie.Director);
+        $li.removeClass('edit');
+    },
+    error: function(jqXhr, textStatus, errorThrown){
+            console.log( errorThrown );
+    }
+    
+});
+
+});
+}
 
                
           

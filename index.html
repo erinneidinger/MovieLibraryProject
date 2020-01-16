@@ -48,6 +48,42 @@
         
     </div>
 
+<div id="addingmovies">
+    <input type="text" id="title" name="title" placeholder="Title" />
+    <input type="text" id="genre" name="genre" placeholder="Genre" />
+    <input type="text" id="director" name="director" placeholder="Director" />
+    <button type="button" onclick="addMovie()">Add Movie</button>
+    <button type="button" onclick="editMovie(id)">Edit Movie</button>
+</div>
+<br><br>
+<ul id = 'movies'></ul>
+<template id = "movieTemplate">
+    <li data-id='{{id}}'>
+        <p>
+            <strong>Title:</strong>
+            <span class="noedit name">{{title}}</span>
+            <input class="edit name"/>
+        </p>
+        <p>
+            <strong>Genre:</strong>
+            <span class="noedit genre">{{genre}}</span>
+            <input class="edit genre"/>
+        </p>
+        <p>
+            <strong>Director:</strong>
+            <span class="noedit director">{{director}}</span>
+            <input class="edit director"/>
+        </p>
+        
+        <button data-id='{{id}}' class='remove'>Remove</button>
+        <button class="editDetails noedit">Edit</button>
+        <button class="saveEdit edit">Save</button>
+        <button class="cancelEdit edit">Cancel</button>
+    </li>
+</template>
+
+</div>
+
 </div>
 </div>
 </div>
