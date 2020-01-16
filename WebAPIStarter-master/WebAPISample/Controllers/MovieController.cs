@@ -44,9 +44,7 @@ namespace WebAPISample.Controllers
                 return InternalServerError(ex);
             }
 
-
         }
-
         // GET api/values/5
         public async Task<IHttpActionResult> Get(int id)
         {
@@ -64,12 +62,12 @@ namespace WebAPISample.Controllers
         // GET api/values/5
 
 
-        public async Task<IHttpActionResult> Post([FromBody]Movie value)
+        public IHttpActionResult Post([FromBody]Movie value)
         {
             try
             {
                 context.Movies.Add(value);
-                var movie = await context.SaveChangesAsync();
+                context.SaveChanges();
 
                 return Ok(movies);
             }
@@ -85,12 +83,13 @@ namespace WebAPISample.Controllers
         {
             try
             {
+               
                 var movieToUpdate = context.Movies.Find(value.MovieId);
 
                 movieToUpdate.Title = value.Title ?? movieToUpdate.Title;
                 movieToUpdate.Genre = value.Genre ?? movieToUpdate.Genre;
                 movieToUpdate.Director = value.Director ?? movieToUpdate.Director;
-                movieToUpdate.Imagename = value.Imagename ?? movieToUpdate.Imagename;
+               // movieToUpdate.Imagename = value.Imagename ?? movieToUpdate.Imagename;
                 var movie = await context.SaveChangesAsync();
 
                 return Ok(movie);

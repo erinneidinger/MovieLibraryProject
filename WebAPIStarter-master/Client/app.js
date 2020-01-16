@@ -7,34 +7,59 @@
         };
 
     //show available movies in table
-    function getButton(dict){
-        $.ajax({
-            url: 'https://localhost:44352/api/Movie',
-            dataType: 'json',
-            type: 'get',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function(data){
+    function FindMovies(dict){
+        $(document).ready(function(){
+            $.ajax({
+                url: 'https://localhost:44352/api/Movie',
+                dataType: 'json',
+                type: 'GET',
+                contentType: 'application/json',
+                data: JSON.stringify(dict),
+                success: function(data){
+                    console.log(data);
+                    $(".movieData").html("");
+                },
+            });
+            e.preventDefault();
+
+            $.then{
+                $(".movieData").append(
                 $.each(data, function(i, data){
-                    $movie.append('<li>Title: '+ data.Title +', Genre: '+ data.Genre +', Director: '+ data.Director + '</li>');
-                    movieAddRow(data);
+                    "<tr>" +
+                    "<td>"Title"</td>" +
+                    "<td>"Genre"</td>" +
+                    "<td>"Director"</td>"
+                    "</tr>"
+                    );
                 });
-            },
-            error: function (request, message, error){
-                handleException(request, message, error);
+            }
+                movieAddRow(data);
+                
             }
         });
-
-        e.preventDefault();
     }
     
+    function movieAddRow(data){
+        if($("#movieTable tbody").length == 0){
+            $("#movieTable tbody").append()("<tbody></tbody>");
+        }
+        $("#movieTable tbody").append(
+            movieBuildTableRow(data));
+    }
+
+    function movieBuildTableRow(data){
+        var ret = 
+        "<tr>" + "<td>" + data.Title + "</td>" + "<td>" + data.Genre + "</td>" + "<td>" + data.Director + "</td>" + "</tr>";
+        return ret;
+    }
+
     //add movie to table
-    function addButton(dict) 
+    function addMovie(dict) 
     {
         $.ajax({
             url: 'https://localhost:44352/api/Movie',
             dataType: 'json',
-            type: 'post',
+            type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(dict),
             success: function( data, textStatus, jQxhr ){
@@ -49,11 +74,11 @@
     }
 
     //edit movie info in table
-    function editButton(dict){
+    function editEdit(dict){
         $.ajax({
             url: 'https://localhost:44352/api/Movie',
             dataType: 'json',
-            type: 'put',
+            type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify(dict),
             success: function(data){
@@ -72,7 +97,7 @@
         $.ajax({
             url: 'https://localhost:44352/api/Movie',
             dataType: 'json',
-            type: 'delete',
+            type: 'DELETE',
             contentType: 'application/json',
             data: JSON.stringify(dict),
             success: function(data){
@@ -85,7 +110,7 @@
 
         e.preventDefault(); 
         }
-    }
+    
 
     function formClear(dict){
         $.ajax({
@@ -96,4 +121,8 @@
     }
 
     $('#my-form').submit( processForm );
-})(jQuery);
+}
+
+})
+
+(jQuery);

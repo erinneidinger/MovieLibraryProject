@@ -1,38 +1,57 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>MOVIE LIBRARY</title>
+    <title>jQuery AJAX POST Form</title>
     <meta charset="utf-8">
 </head>
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
 <body>
+   
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+     <table class ="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Director</th>
+               
+            </tr>
+        </thead>
+        <tbody class = "movieData">
+        </tbody>
+    </table>
+     <div class="col-md-2">
+    <button type="button" onclick="FindMovies()">SeeMovies</button>
+    </div>   
 
-<div id="response">
-    <pre></pre>
+
+   <div class="container"> 
+    <input type="text" id="title" name="title" placeholder="Title" />
+    <input type="text" id="genre" name="genre" placeholder="Genre" />
+    <input type="text" id="director" name="director" placeholder="Director" />
+    
+      <button type="button" onclick="addMovie()">InsertMovie</button>
+        </div>
+    
+    <div id="updatePop">
+                 <input id="title" type="text" name="title" placeholder="Title" />
+                <input id="genre" type="text" name="genre" placeholder="Genre" />
+                <input id="director" type="text" name="director" placeholder="Director" />
+                
+
+                <button type="button" onclick="putForm()">UpdateMovie</button>
+           
+        
+    </div>
+
 </div>
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Genre</th>
-            <th>Director</th>
-        </tr>
-    </thead>
-    <tbody>
-        <td>Title</td>
-        <td>Genre</td>
-        <td>Director</td>
-    </tbody>
-</table>
-
-<form id="my-form">
-    <input type="text" name="title" placeholder="Title" />
-    <input type="text" name="genre" placeholder="Genre" />
-    <input type="text" name="director" placeholder="Director" />
-
-    <button type="submit" onclick="addButton">Add Movie</button>
-</form>
-
+</div>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script type="text/javascript" src="../app.js"></script>
+<script type="text/javascript" src="./app.js"></script>
 </body>
 </html>
