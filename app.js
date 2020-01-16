@@ -1,4 +1,6 @@
-var moviesAll = "movies";
+var moviesAll = $('#movies');
+var movieTemplate = "" + "<li>" + "<p>title: {{title}}</p>" + 
+"<p>genre: {{genre}}</p>" + "<p>director: {{director}}</p>" + "<li>";
 
 function FindMovies(){
     $(document).ready(function(){
@@ -49,25 +51,30 @@ function addMovie(dict)
 });
 }
 
-function editMovie(dict){
-
-
-$moviesAll.delegate('.remove', 'click', function(){
-    var $li = $(this).closest('li');
-    var self = this;
-
-    $.ajax({
-        type: 'DELETE',
-        url: 'api/Movies' + $(this).attr('data-id'),
-        success: function (){
-            $li.fadOut(300, function(){
-                $(this).remove();
-            });
-        }
+function deleteMovie(id){
+    $.moviesAll.delegate('.remove', 'click', function(){
+        var $li = $(this).closest('li');
+    
+        $.ajax({
+            type: 'DELETE',
+            url: 'https://localhost:44352/api/Movie/' + $(this).attr('data-id'),
+            success: function (){
+                $li.fadOut(300, function(){
+                    $(this).remove();
+                });
+            }
+        });
     });
-});
+}
 
-$moviesAll.delegate('.editDetails', 'click', function(){
+function editMovie(id){
+    var data = {
+        "Title": document.getElementById("title").value,
+        "Genre": document.getElementById("genre").value,
+        "Director": document.getElementById("director").value,
+    }
+
+moviesAll.delegate('.editDetails', 'click', function(){
     var $li = $(this).closet('li');
     $li.find('input.title').val($li.find('span.title').html());
     $li.find('input.genre').val($li.find('span.genre').html());
@@ -75,11 +82,11 @@ $moviesAll.delegate('.editDetails', 'click', function(){
     $li.addClass('edit');
 })
 
-$moviesAll.delegate('.cancelEdit', 'click', function(){
+moviesAll.delegate('.cancelEdit', 'click', function(){
    $(this).closert('li').removeClass('edit');
 })
 
-$moviesAll.delegate('.saveEdit', 'click', function(){
+moviesAll.delegate('.saveEdit', 'click', function(){
     var $li = $(this).closest('li');
     var movie = {
         Title: $li.find('input.title').val(),
@@ -87,7 +94,7 @@ $moviesAll.delegate('.saveEdit', 'click', function(){
         Director: $li.find('input.director').val(),
     };
 $.ajax({
-    url: 'https://localhost:44352/api/Movie' + $li.attr('data-id'),
+    url: 'https://localhost:44352/api/Movie/' + $li.attr('data-id'),
     dataType: 'json',
     type: 'PUT',
     data: movie,

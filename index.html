@@ -26,10 +26,11 @@
     <input type="text" id="genre" name="genre" placeholder="Genre" />
     <input type="text" id="director" name="director" placeholder="Director" />
     <button type="button" onclick="addMovie()">Add Movie</button>
+    <button type="button" onclick="editMovie(id)">Edit Movie</button>
 </div>
 <br><br>
 <ul id = 'movies'></ul>
-<div id="updatingmovies">
+<template id = "movieTemplate">
     <li data-id='{{id}}'>
         <p>
             <strong>Title:</strong>
@@ -46,13 +47,13 @@
             <span class="noedit director">{{director}}</span>
             <input class="edit director"/>
         </p>
-        <button type="button" onclick="editMovie()">Edit Movie</button>
+        
         <button data-id='{{id}}' class='remove'>Remove</button>
         <button class="editDetails noedit">Edit</button>
         <button class="saveEdit edit">Save</button>
         <button class="cancelEdit edit">Cancel</button>
     </li>
-    </div>
+</template>
 
 </div>
 
