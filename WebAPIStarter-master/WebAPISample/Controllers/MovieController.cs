@@ -79,7 +79,7 @@ namespace WebAPISample.Controllers
         }
 
         // PUT api/values/5
-        public async Task<IHttpActionResult> Put([FromBody]Movie value)
+        public async Task<IHttpActionResult> Put(Movie value, int id)
         {
             try
             {
